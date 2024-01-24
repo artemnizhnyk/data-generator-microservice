@@ -1,2 +1,8 @@
-package com.artemnizhnyk.datageneratormicroservice.service;public interface KafkaDataService {
+package com.artemnizhnyk.datageneratormicroservice.service;
+
+import com.artemnizhnyk.datageneratormicroservice.model.Data;
+
+public interface KafkaDataService {
+
+    void send(Data data);
 }

@@ -1,5 +1,7 @@
-package com.artemnizhnyk.datageneratormicroservice.model;
+package com.artemnizhnyk.datageneratormicroservice.web.dto;
 
+import com.artemnizhnyk.datageneratormicroservice.model.Data;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,17 +11,13 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Data {
+public class DataDto {
 
     private Long sensorId;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime timestamp;
     private double measurement;
-    private MeasurementType measurementType;
+    private Data.MeasurementType measurementType;
 
-    public enum MeasurementType {
-        TEMPERATURE,
-        VOLTAGE,
-        POWER
-    }
 
 }
