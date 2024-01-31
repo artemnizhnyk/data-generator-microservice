@@ -14,4 +14,4 @@ COPY --from=build /home/gradle/src/build/libs /app
 
 EXPOSE 8081
 
-ENTRYPOINT ["java", "-jar", "/app/data-analyser-microservice-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app/data-generator-microservice-0.0.1-SNAPSHOT.jar"]
