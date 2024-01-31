@@ -1,16 +1,17 @@
-FROM gradle:7.3.3-jdk17 AS build
+FROM gradle:7.4.0-jdk17 AS build
 
-COPY /src /home/gradle/src
-COPY build.gradle settings.gradle /home/gradle/
+COPY --chown=gradle:gradle . /home/gradle/src
 
-WORKDIR /home/gradle
+WORKDIR /home/gradle/src
 
-RUN gradle build --no-daemon
+RUN gradle build
 
 FROM openjdk:17-jdk-slim
 
-COPY --from=build /home/gradle/build/libs/*.jar application.jar
+WORKDIR /app
+
+COPY --from=build /home/gradle/src/build/libs /app
 
 EXPOSE 8081
 
-ENTRYPOINT ["java", "-jar", "application.jar"]
+ENTRYPOINT ["java", "-jar", "/app/data-analyser-microservice-0.0.1-SNAPSHOT.jar"]
